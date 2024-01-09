@@ -44,10 +44,15 @@ npm start
 Parameters:
 
     id: 'id of the container, calendar will be rendered within' (required)
-    file: 'data.js' (required, format below)
+    file: 'http://anydomain/data', Optional: If not specified, will load data.js, locally. Can be a remote file (supports crossdomain access). Format below
+    theme: 'theme.js', Optional: If not specified, will load theme.js locally. file must be local. Format below.
     theme: 1 or 2 (optional)
     themeId: 'id of the container, theme events will be rendered within' (optional)
  
 #### Event data format
 
 [data.js](https://github.com/Salmizar/availability-calendar/blob/main/calendar/src/data.js)
+
+#### Theme format
+
+[data.js](https://github.com/Salmizar/availability-calendar/blob/main/calendar/src/theme.js)

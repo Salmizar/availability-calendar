@@ -30,11 +30,11 @@ function setupLegend(config) {
 };
 function renderThemeEvents(config) {
     let container = document.getElementById(config.themeId);
-    if (container && data) {
+    if (container && themeDates) {
         container.innerHTML = '';
         let tbl = document.createElement('table');
         container.appendChild(tbl);
-        data.themeDates.map((event, index) => {
+        themeDates.map((event, index) => {
             let row = tbl.insertRow(index);
             let col = row.insertCell(0);
             col.className = 'theme-cell';
@@ -57,15 +57,23 @@ function setupCalendar(config) {
     link.href = './cal/calendar.css';
     document.head.appendChild(link);
     if (typeof data === "undefined") {
-        //Load config file
+        //Load theme config file
         var script = document.createElement('script');
         script.onload = function () {
-            renderCalendar();
+            console.log('theme loaded');
             if (config.themeId) {
                 renderThemeEvents(config);
             }
         };
-        script.src = config.file;
+        script.src = (config.theme)?config.theme:'theme.js';
+        document.head.appendChild(script);
+        //Load event data file
+        var script = document.createElement('script');
+        script.crossOrigin = 'anonymous';
+        script.onload = function () {
+            renderCalendar();
+        };
+        script.src = (config.file)?config.file:'data.js';
         document.head.appendChild(script);
     } else {
         renderCalendar();
@@ -79,7 +87,7 @@ function changeMonth(e) {
     renderCalendar();
 };
 function getDateTheme(date) {
-    for (let event of data.themeDates) {
+    for (let event of themeDates) {
         let eStart = event.strt.split('-');
         eStart = new Date(eStart[2], Number(eStart[1]) - 1, eStart[0]);
         let eEnd = event.ed.split('-');

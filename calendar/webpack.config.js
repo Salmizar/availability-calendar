@@ -36,6 +36,7 @@ module.exports = {
       patterns: [
         { from: "./public", to: "" },
         { from: "./src/data.js", to: "" },
+        { from: "./src/theme.js", to: "" },
         { from: "./src/cal/calendar.css", to: "cal/calendar.css" },
       ],
     }),
