@@ -60,12 +60,11 @@ function setupCalendar(config) {
         //Load theme config file
         var script = document.createElement('script');
         script.onload = function () {
-            console.log('theme loaded');
             if (config.themeId) {
                 renderThemeEvents(config);
             }
         };
-        script.src = (config.theme)?config.theme:'theme.js';
+        script.src = (config.themeData)?config.themeData:'theme.js';
         document.head.appendChild(script);
         //Load event data file
         var script = document.createElement('script');
